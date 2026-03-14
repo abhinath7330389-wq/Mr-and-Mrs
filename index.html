@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Hot Wings Restaurant</title>
 
@@ -10,7 +9,7 @@
 body{
 font-family:Arial;
 margin:0;
-background:#fafafa;
+background:#f5f5f5;
 }
 
 header{
@@ -32,7 +31,7 @@ margin-top:40px;
 
 .category h2{
 border-bottom:2px solid #ddd;
-padding-bottom:8px;
+padding-bottom:6px;
 }
 
 .food{
@@ -48,8 +47,8 @@ box-shadow:0 2px 6px rgba(0,0,0,0.1);
 
 .qty{
 display:flex;
-gap:10px;
 align-items:center;
+gap:10px;
 }
 
 button{
@@ -111,6 +110,8 @@ font-size:16px;
 
 <ul id="cart"></ul>
 
+<h3>Total Price: ₹<span id="total">0</span></h3>
+
 <input id="name" placeholder="Customer Name">
 <input id="phone" placeholder="Phone">
 <input id="address" placeholder="Address">
@@ -130,12 +131,10 @@ font-size:16px;
 <input type="time" id="btime">
 
 <select id="bpersons">
-
 <option>2 Persons</option>
 <option>4 Persons</option>
 <option>6 Persons</option>
 <option>10 Persons</option>
-
 </select>
 
 <button class="orderbtn" onclick="bookTable()">Book Table</button>
@@ -212,10 +211,10 @@ let menu = {
 {name:"Paneer Pakoda",price:140},
 {name:"Chilli Paneer Dry Fry",price:180},
 {name:"Veg Manchurian",price:160},
-{name:"Paneer Manchurian",price:180},
+{name:"Panner Manchurian",price:180},
 {name:"French Fry",price:120},
-{name:"Honey Chilli Potato",price:150},
-{name:"Crispy Chilli Corn",price:150}
+{name:"Honey Chilli Potatoo",price:150},
+{name:"Crispy Chhilli Corn",price:150}
 ],
 
 "Rice":[
@@ -324,19 +323,32 @@ function updateCart(){
 let list=document.getElementById("cart")
 list.innerHTML=""
 
-for(let item in cart){
+let total=0
 
-if(cart[item]>0){
+for(let category in menu){
+
+menu[category].forEach(food=>{
+
+let qty=cart[food.name] || 0
+
+if(qty>0){
+
+let itemTotal = food.price * qty
+total += itemTotal
 
 let li=document.createElement("li")
 
-li.innerText=item+" x "+cart[item]
+li.innerText = food.name + " x " + qty + " = ₹" + itemTotal
 
 list.appendChild(li)
 
 }
 
+})
+
 }
+
+document.getElementById("total").innerText = total
 
 }
 
@@ -344,11 +356,28 @@ function sendOrder(){
 
 let msg="Hot Wings Order:%0A"
 
-for(let item in cart){
-if(cart[item]>0){
-msg+=item+" x "+cart[item]+"%0A"
+let total=0
+
+for(let category in menu){
+
+menu[category].forEach(food=>{
+
+let qty=cart[food.name] || 0
+
+if(qty>0){
+
+let itemTotal = food.price * qty
+total += itemTotal
+
+msg+=food.name+" x "+qty+" = ₹"+itemTotal+"%0A"
+
 }
+
+})
+
 }
+
+msg+="%0ATotal: ₹"+total+"%0A"
 
 msg+="Name:"+document.getElementById("name").value+"%0A"
 msg+="Phone:"+document.getElementById("phone").value+"%0A"
