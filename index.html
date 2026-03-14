@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-
 <title>Mr & Mrs Food Maker</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -14,64 +13,32 @@ background:#111;
 color:white;
 }
 
-/* Header */
-
 header{
 background:#ff6a00;
+text-align:center;
 padding:15px;
-text-align:center;
 }
-
-/* Hero Section */
-
-.hero{
-background:url("https://images.unsplash.com/photo-1504674900247-0877df9cc836");
-background-size:cover;
-background-position:center;
-height:250px;
-display:flex;
-flex-direction:column;
-justify-content:center;
-align-items:center;
-text-align:center;
-}
-
-.hero h1{
-background:rgba(0,0,0,0.6);
-padding:10px;
-border-radius:8px;
-}
-
-/* Container */
 
 .container{
 padding:15px;
 }
 
-/* Food Items */
+.category{
+margin-top:25px;
+font-size:22px;
+border-bottom:2px solid #444;
+padding-bottom:5px;
+}
 
 .food{
 background:#222;
+margin:8px 0;
 padding:10px;
-margin:10px 0;
 border-radius:10px;
 display:flex;
-align-items:center;
 justify-content:space-between;
+align-items:center;
 }
-
-.food img{
-width:60px;
-height:60px;
-border-radius:10px;
-}
-
-.food-name{
-flex:1;
-margin-left:10px;
-}
-
-/* Quantity */
 
 .qty{
 display:flex;
@@ -89,20 +56,18 @@ font-size:18px;
 border-radius:5px;
 }
 
-/* Form */
-
 input{
 width:100%;
 padding:10px;
-margin:8px 0;
+margin:6px 0;
 border-radius:8px;
 border:none;
 }
 
-.order-btn{
+.orderbtn{
 background:#25D366;
-padding:15px;
 border:none;
+padding:15px;
 width:100%;
 font-size:18px;
 border-radius:10px;
@@ -114,160 +79,201 @@ font-size:20px;
 margin-top:10px;
 }
 
-/* Reviews */
-
-.review{
-background:#222;
-padding:10px;
-border-radius:10px;
-margin:10px 0;
-}
-
-/* Footer */
-
-footer{
-background:#000;
-text-align:center;
-padding:15px;
-margin-top:20px;
-}
-
 </style>
-
 </head>
 
 <body>
 
 <header>
-
 <h2>Mr & Mrs Food Maker</h2>
-<p>Delicious Food | Fast Delivery</p>
-
+<p>Order Food Online | Badarpur</p>
 </header>
 
-<div class="hero">
-
-<h1>Order Fresh Food Online</h1>
-<p>Pizza • Burger • Momo</p>
-
-</div>
+<div class="container" id="menu"></div>
 
 <div class="container">
-
-<h3>Menu</h3>
-
-<div class="food">
-
-<img src="https://i.imgur.com/eTmWoAN.png">
-
-<div class="food-name">
-Margherita Pizza ₹120
-</div>
-
-<div class="qty">
-<button onclick="changeQty('p1',-1)">-</button>
-<span id="p1">0</span>
-<button onclick="changeQty('p1',1)">+</button>
-</div>
-
-</div>
-
-<div class="food">
-
-<img src="https://i.imgur.com/Bm8XG5B.png">
-
-<div class="food-name">
-Veg Burger ₹70
-</div>
-
-<div class="qty">
-<button onclick="changeQty('b1',-1)">-</button>
-<span id="b1">0</span>
-<button onclick="changeQty('b1',1)">+</button>
-</div>
-
-</div>
-
-<div class="food">
-
-<img src="https://i.imgur.com/Xq6b7W7.png">
-
-<div class="food-name">
-Veg Momo ₹60
-</div>
-
-<div class="qty">
-<button onclick="changeQty('m1',-1)">-</button>
-<span id="m1">0</span>
-<button onclick="changeQty('m1',1)">+</button>
-</div>
-
-</div>
 
 <h3>Customer Details</h3>
 
 <input id="name" placeholder="Your Name">
-
 <input id="address" placeholder="Delivery Address">
 
 <div class="total">
 Total: ₹<span id="total">0</span>
 </div>
 
-<button class="order-btn" onclick="sendOrder()">Order on WhatsApp</button>
+<button class="orderbtn" onclick="sendOrder()">Order on WhatsApp</button>
 
-<h3>Customer Reviews</h3>
+<h3>Book a Table</h3>
 
-<div class="review">
-⭐ ⭐ ⭐ ⭐ ⭐  
-"Very tasty pizza and fast delivery!"
-</div>
+<input id="tableName" placeholder="Your Name">
+<input id="tablePhone" placeholder="Phone Number">
+<input id="tableDate" type="date">
+<input id="tableTime" type="time">
+<input id="tableGuests" placeholder="Number of Guests">
 
-<div class="review">
-⭐ ⭐ ⭐ ⭐  
-"Best momo in Badarpur."
-</div>
-
-<h3>Location</h3>
-
-<iframe
-width="100%"
-height="200"
-style="border:0"
-loading="lazy"
-src="https://maps.google.com/maps?q=Badarpur%20Assam&t=&z=13&ie=UTF8&iwloc=&output=embed">
-</iframe>
+<button class="orderbtn" onclick="bookTable()">Book Table</button>
 
 </div>
-
-<footer>
-
-<p>© 2026 Mr & Mrs Food Maker</p>
-<p>📞 8453049219</p>
-
-</footer>
 
 <script>
 
-let prices={
-p1:120,
-b1:70,
-m1:60
+let menu = {
+
+"Starter":{
+"Chicken Pakoda":90,
+"Veg Pakoda":80,
+"Paneer Pakoda":150,
+"Onion Pakoda":80,
+"Crispy Chicken":150,
+"Leg Piece":100,
+"Wings Lollipop":100,
+"French Fries":100
+},
+
+"Tawa":{
+"Roti":10,
+"Butter Roti":15,
+"Plain Paratha":30,
+"Aloo Paratha":40
+},
+
+"Manchurian":{
+"Veg Manchurian":120,
+"Chicken Manchurian":180,
+"Paneer Manchurian":200,
+"Gobi Manchurian":150
+},
+
+"Rice":{
+"Veg Fried Rice":100,
+"Jeera Rice":80,
+"Ghee Rice":100,
+"Steam Rice":70,
+"Egg Fried Rice":120,
+"Chicken Fried Rice":150,
+"Mixed Fried Rice":160,
+"Paneer Fried Rice":150
+},
+
+"Chicken Items":{
+"Chicken Masala":200,
+"Butter Chicken Masala":220,
+"Chicken Kosha":200,
+"Chilli Chicken":180,
+"Chicken Dry Fry":180,
+"Chicken Leg Masala":180,
+"Spicy Chicken Dry Fry":200
+},
+
+"Chowmein":{
+"Veg Chowmein":100,
+"Chicken Chowmein":140,
+"Egg Chowmein":110,
+"Paneer Chowmein":150,
+"Mix Chowmein":120
+},
+
+"Biriyani":{
+"Hyderabadi Biriyani":250,
+"Dum Biriyani":200
+},
+
+"Pizza":{
+"Margherita Pizza":150,
+"Corn Veggies Pizza":180,
+"Paneer Veggies Pizza":210,
+"Corn Paneer Pizza":220,
+"Blockbuster Pizza":260,
+"Chicken Pizza":280,
+"Loaded All In One":300
+},
+
+"Momo":{
+"Chicken Momo":70,
+"Veg Momo":50
+},
+
+"Burger":{
+"Veg Burger":90,
+"Chicken Burger":130
+},
+
+"Drinks":{
+"Masala Coke":40,
+"Lassi":60,
+"Hot Coffee":20,
+"Cold Coffee":50,
+"Milkshake":70,
+"Tea":15
+}
+
 };
 
-function changeQty(id,val){
+let quantities={};
 
-let el=document.getElementById(id);
+let menuDiv=document.getElementById("menu");
 
-let qty=parseInt(el.innerText);
+for(let category in menu){
 
-qty+=val;
+let title=document.createElement("div");
+title.className="category";
+title.innerText=category;
 
-if(qty<0) qty=0;
+menuDiv.appendChild(title);
 
-el.innerText=qty;
+for(let item in menu[category]){
 
+let price=menu[category][item];
+
+let food=document.createElement("div");
+food.className="food";
+
+let name=document.createElement("span");
+name.innerText=item+" ₹"+price;
+
+let qtyDiv=document.createElement("div");
+qtyDiv.className="qty";
+
+let minus=document.createElement("button");
+minus.innerText="-";
+
+let plus=document.createElement("button");
+plus.innerText="+";
+
+let qty=document.createElement("span");
+qty.innerText="0";
+
+quantities[item]=0;
+
+minus.onclick=function(){
+
+if(quantities[item]>0){
+quantities[item]--;
+qty.innerText=quantities[item];
 updateTotal();
+}
+
+}
+
+plus.onclick=function(){
+
+quantities[item]++;
+qty.innerText=quantities[item];
+updateTotal();
+
+}
+
+qtyDiv.appendChild(minus);
+qtyDiv.appendChild(qty);
+qtyDiv.appendChild(plus);
+
+food.appendChild(name);
+food.appendChild(qtyDiv);
+
+menuDiv.appendChild(food);
+
+}
 
 }
 
@@ -275,12 +281,12 @@ function updateTotal(){
 
 let total=0;
 
-for(let id in prices){
+for(let category in menu){
+for(let item in menu[category]){
 
-let qty=parseInt(document.getElementById(id).innerText);
+total+=quantities[item]*menu[category][item];
 
-total+=qty*prices[id];
-
+}
 }
 
 document.getElementById("total").innerText=total;
@@ -290,32 +296,49 @@ document.getElementById("total").innerText=total;
 function sendOrder(){
 
 let name=document.getElementById("name").value;
-
 let address=document.getElementById("address").value;
 
 let msg="Order from Mr & Mrs Food Maker%0A";
 
 msg+="Name: "+name+"%0A";
-
 msg+="Address: "+address+"%0A%0A";
 
 let total=0;
 
-for(let id in prices){
+for(let category in menu){
+for(let item in menu[category]){
 
-let qty=parseInt(document.getElementById(id).innerText);
+if(quantities[item]>0){
 
-if(qty>0){
-
-msg+=id+" x "+qty+"%0A";
-
-total+=qty*prices[id];
+msg+=item+" x "+quantities[item]+"%0A";
+total+=quantities[item]*menu[category][item];
 
 }
 
+}
 }
 
 msg+="%0ATotal ₹"+total;
+
+window.open("https://wa.me/918453049219?text="+msg);
+
+}
+
+function bookTable(){
+
+let name=document.getElementById("tableName").value;
+let phone=document.getElementById("tablePhone").value;
+let date=document.getElementById("tableDate").value;
+let time=document.getElementById("tableTime").value;
+let guests=document.getElementById("tableGuests").value;
+
+let msg="Table Booking - Mr & Mrs Food Maker%0A";
+
+msg+="Name: "+name+"%0A";
+msg+="Phone: "+phone+"%0A";
+msg+="Date: "+date+"%0A";
+msg+="Time: "+time+"%0A";
+msg+="Guests: "+guests;
 
 window.open("https://wa.me/918453049219?text="+msg);
 
