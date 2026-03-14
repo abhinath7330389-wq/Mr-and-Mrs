@@ -1,9 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Hot Wings Restaurant</title>
 
 <style>
@@ -13,90 +11,89 @@ font-family:Arial;
 margin:0;
 background:#111;
 color:white;
-text-align:center;
 }
 
 header{
 background:black;
 padding:20px;
+text-align:center;
 }
 
 h1{
 color:orange;
+margin:0;
 }
 
-nav a{
+.category-bar{
+overflow-x:auto;
+white-space:nowrap;
+background:#1a1a1a;
+padding:10px;
+}
+
+.category-bar a{
+display:inline-block;
 color:white;
-margin:10px;
+background:#333;
+padding:8px 15px;
+margin:5px;
+border-radius:20px;
 text-decoration:none;
-font-weight:bold;
+font-size:14px;
+}
+
+.category-bar a:hover{
+background:orange;
 }
 
 section{
-padding:40px 20px;
+padding:20px;
 }
 
-.menu-container{
-display:flex;
-flex-wrap:wrap;
-justify-content:center;
+.menu-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+gap:15px;
 }
 
 .item{
-background:#1f1f1f;
-margin:10px;
-padding:20px;
-width:200px;
+background:#222;
+padding:15px;
 border-radius:10px;
-box-shadow:0 0 10px rgba(0,0,0,0.6);
+text-align:center;
 }
 
 button{
 background:orange;
 border:none;
-padding:10px 15px;
-cursor:pointer;
+padding:8px 12px;
+margin-top:8px;
 border-radius:5px;
-font-weight:bold;
+cursor:pointer;
 }
 
 button:hover{
-background:#ffa726;
+background:#ff9800;
+}
+
+.cart-box{
+background:#000;
+padding:20px;
 }
 
 input{
 display:block;
+width:220px;
 margin:10px auto;
 padding:10px;
-width:230px;
 border:none;
 border-radius:5px;
 }
 
-#cart{
-list-style:none;
-padding:0;
-}
-
-.total{
-font-size:20px;
-margin:10px;
-}
-
 footer{
 background:black;
+text-align:center;
 padding:20px;
-margin-top:40px;
-}
-
-.whatsapp{
-background:#25D366;
-color:white;
-padding:12px 20px;
-display:inline-block;
-margin-top:10px;
-border-radius:5px;
-text-decoration:none;
 }
 
 </style>
@@ -106,108 +103,184 @@ text-decoration:none;
 <body>
 
 <header>
-
 <h1>🔥 Hot Wings Restaurant</h1>
-
-<nav>
-<a href="#menu">Menu</a>
-<a href="#order">Order</a>
-<a href="#booking">Book Table</a>
-</nav>
-
 </header>
 
-<section id="menu">
+<div class="category-bar">
 
-<h2>Full Menu</h2>
+<a href="#momos">Momos</a>
+<a href="#pizza">Pizza</a>
+<a href="#burgers">Burgers</a>
+<a href="#rolls">Rolls</a>
+<a href="#rice">Rice</a>
+<a href="#noodles">Noodles</a>
+<a href="#biryani">Biryani</a>
+<a href="#tandoori">Tandoori</a>
+<a href="#beverages">Beverages</a>
 
-<div class="menu-container">
+</div>
 
-<div class="item"><h3>Veg Momos</h3><p>₹40</p><button onclick="addToCart('Veg Momos',40)">Add</button></div>
+<section id="momos">
 
-<div class="item"><h3>Chicken Momos</h3><p>₹70</p><button onclick="addToCart('Chicken Momos',70)">Add</button></div>
+<h2>Momos</h2>
 
-<div class="item"><h3>Fried Veg Momos</h3><p>₹60</p><button onclick="addToCart('Fried Veg Momos',60)">Add</button></div>
+<div class="menu-grid">
 
-<div class="item"><h3>Fried Chicken Momos</h3><p>₹90</p><button onclick="addToCart('Fried Chicken Momos',90)">Add</button></div>
+<div class="item"><h3>Deep Fried Momo</h3><p>₹90</p><button onclick="add('Deep Fried Momo',90)">Add</button></div>
 
-<div class="item"><h3>Veg Chowmein</h3><p>₹50</p><button onclick="addToCart('Veg Chowmein',50)">Add</button></div>
+<div class="item"><h3>Pan Fried Momo</h3><p>₹90</p><button onclick="add('Pan Fried Momo',90)">Add</button></div>
 
-<div class="item"><h3>Chicken Chowmein</h3><p>₹80</p><button onclick="addToCart('Chicken Chowmein',80)">Add</button></div>
+<div class="item"><h3>Tandoori Momo</h3><p>₹120</p><button onclick="add('Tandoori Momo',120)">Add</button></div>
 
-<div class="item"><h3>Egg Chowmein</h3><p>₹70</p><button onclick="addToCart('Egg Chowmein',70)">Add</button></div>
+<div class="item"><h3>Kurkure Momo</h3><p>₹120</p><button onclick="add('Kurkure Momo',120)">Add</button></div>
 
-<div class="item"><h3>Veg Fried Rice</h3><p>₹50</p><button onclick="addToCart('Veg Fried Rice',50)">Add</button></div>
-
-<div class="item"><h3>Egg Fried Rice</h3><p>₹70</p><button onclick="addToCart('Egg Fried Rice',70)">Add</button></div>
-
-<div class="item"><h3>Chicken Fried Rice</h3><p>₹80</p><button onclick="addToCart('Chicken Fried Rice',80)">Add</button></div>
-
-<div class="item"><h3>Veg Burger</h3><p>₹60</p><button onclick="addToCart('Veg Burger',60)">Add</button></div>
-
-<div class="item"><h3>Chicken Burger</h3><p>₹80</p><button onclick="addToCart('Chicken Burger',80)">Add</button></div>
-
-<div class="item"><h3>Egg Roll</h3><p>₹60</p><button onclick="addToCart('Egg Roll',60)">Add</button></div>
-
-<div class="item"><h3>Chicken Roll</h3><p>₹80</p><button onclick="addToCart('Chicken Roll',80)">Add</button></div>
-
-<div class="item"><h3>Paneer Roll</h3><p>₹70</p><button onclick="addToCart('Paneer Roll',70)">Add</button></div>
-
-<div class="item"><h3>Chilli Paneer</h3><p>₹110</p><button onclick="addToCart('Chilli Paneer',110)">Add</button></div>
-
-<div class="item"><h3>Chilli Chicken</h3><p>₹130</p><button onclick="addToCart('Chilli Chicken',130)">Add</button></div>
-
-<div class="item"><h3>Hot Wings Special Chicken</h3><p>₹150</p><button onclick="addToCart('Hot Wings Special Chicken',150)">Add</button></div>
+<div class="item"><h3>Pizza Momo</h3><p>₹130</p><button onclick="add('Pizza Momo',130)">Add</button></div>
 
 </div>
 
 </section>
 
-<section id="order">
+<section id="pizza">
+
+<h2>Pizza</h2>
+
+<div class="menu-grid">
+
+<div class="item"><h3>Margherita Pizza</h3><p>₹199</p><button onclick="add('Margherita Pizza',199)">Add</button></div>
+
+<div class="item"><h3>Paneer Cheese Pizza</h3><p>₹249</p><button onclick="add('Paneer Cheese Pizza',249)">Add</button></div>
+
+<div class="item"><h3>Chicken Cheese Pizza</h3><p>₹299</p><button onclick="add('Chicken Cheese Pizza',299)">Add</button></div>
+
+<div class="item"><h3>Hot Wings Special Pizza</h3><p>₹349</p><button onclick="add('Hot Wings Special Pizza',349)">Add</button></div>
+
+</div>
+
+</section>
+
+<section id="burgers">
+
+<h2>Burgers</h2>
+
+<div class="menu-grid">
+
+<div class="item"><h3>Veg Burger</h3><p>₹60</p><button onclick="add('Veg Burger',60)">Add</button></div>
+
+<div class="item"><h3>Chicken Burger</h3><p>₹80</p><button onclick="add('Chicken Burger',80)">Add</button></div>
+
+<div class="item"><h3>Chicken Cheese Burger</h3><p>₹100</p><button onclick="add('Chicken Cheese Burger',100)">Add</button></div>
+
+</div>
+
+</section>
+
+<section id="rolls">
+
+<h2>Rolls</h2>
+
+<div class="menu-grid">
+
+<div class="item"><h3>Veg Roll</h3><p>₹50</p><button onclick="add('Veg Roll',50)">Add</button></div>
+
+<div class="item"><h3>Egg Roll</h3><p>₹60</p><button onclick="add('Egg Roll',60)">Add</button></div>
+
+<div class="item"><h3>Chicken Roll</h3><p>₹80</p><button onclick="add('Chicken Roll',80)">Add</button></div>
+
+</div>
+
+</section>
+
+<section id="rice">
+
+<h2>Rice</h2>
+
+<div class="menu-grid">
+
+<div class="item"><h3>Veg Fried Rice</h3><p>₹70</p><button onclick="add('Veg Fried Rice',70)">Add</button></div>
+
+<div class="item"><h3>Egg Fried Rice</h3><p>₹90</p><button onclick="add('Egg Fried Rice',90)">Add</button></div>
+
+<div class="item"><h3>Chicken Fried Rice</h3><p>₹120</p><button onclick="add('Chicken Fried Rice',120)">Add</button></div>
+
+</div>
+
+</section>
+
+<section id="noodles">
+
+<h2>Noodles</h2>
+
+<div class="menu-grid">
+
+<div class="item"><h3>Veg Noodles</h3><p>₹70</p><button onclick="add('Veg Noodles',70)">Add</button></div>
+
+<div class="item"><h3>Chicken Noodles</h3><p>₹120</p><button onclick="add('Chicken Noodles',120)">Add</button></div>
+
+<div class="item"><h3>Mixed Noodles</h3><p>₹150</p><button onclick="add('Mixed Noodles',150)">Add</button></div>
+
+</div>
+
+</section>
+
+<section id="biryani">
+
+<h2>Biryani</h2>
+
+<div class="menu-grid">
+
+<div class="item"><h3>Chicken Dum Biryani</h3><p>₹180</p><button onclick="add('Chicken Dum Biryani',180)">Add</button></div>
+
+<div class="item"><h3>Mutton Dum Biryani</h3><p>₹250</p><button onclick="add('Mutton Dum Biryani',250)">Add</button></div>
+
+</div>
+
+</section>
+
+<section id="tandoori">
+
+<h2>Tandoori</h2>
+
+<div class="menu-grid">
+
+<div class="item"><h3>Chicken Tandoori</h3><p>₹220</p><button onclick="add('Chicken Tandoori',220)">Add</button></div>
+
+<div class="item"><h3>Paneer Tikka</h3><p>₹180</p><button onclick="add('Paneer Tikka',180)">Add</button></div>
+
+</div>
+
+</section>
+
+<section id="beverages">
+
+<h2>Beverages</h2>
+
+<div class="menu-grid">
+
+<div class="item"><h3>Tea</h3><p>₹20</p><button onclick="add('Tea',20)">Add</button></div>
+
+<div class="item"><h3>Coffee</h3><p>₹30</p><button onclick="add('Coffee',30)">Add</button></div>
+
+<div class="item"><h3>Lassi</h3><p>₹60</p><button onclick="add('Lassi',60)">Add</button></div>
+
+</div>
+
+</section>
+
+<section class="cart-box">
 
 <h2>Your Cart</h2>
 
 <ul id="cart"></ul>
 
-<div class="total">
-Total: ₹<span id="total">0</span>
-</div>
+<h3>Total ₹<span id="total">0</span></h3>
 
-<h3>Customer Details</h3>
+<input id="name" placeholder="Your Name">
 
-<input type="text" id="name" placeholder="Your Name">
+<input id="phone" placeholder="Phone">
 
-<input type="text" id="phone" placeholder="Phone Number">
+<input id="address" placeholder="Address">
 
-<input type="text" id="address" placeholder="Delivery Address">
-
-<button onclick="placeOrder()">Place Order</button>
-
-<br>
-
-<a class="whatsapp" id="whatsappOrder" target="_blank">
-Order via WhatsApp
-</a>
-
-</section>
-
-<section id="booking">
-
-<h2>Book a Table</h2>
-
-<form id="bookingForm">
-
-<input type="text" placeholder="Your Name" required>
-
-<input type="date" required>
-
-<input type="time" required>
-
-<input type="number" placeholder="Number of People" required>
-
-<button type="submit">Book Table</button>
-
-</form>
+<button onclick="order()">Place Order</button>
 
 </section>
 
@@ -224,24 +297,29 @@ Order via WhatsApp
 let cart=[]
 let total=0
 
-function addToCart(name,price){
+function add(name,price){
 
 cart.push({name,price})
+
 total+=price
-updateCart()
+
+update()
 
 }
 
-function updateCart(){
+function update(){
 
-let cartList=document.getElementById("cart")
-cartList.innerHTML=""
+let list=document.getElementById("cart")
+
+list.innerHTML=""
 
 cart.forEach(item=>{
 
 let li=document.createElement("li")
-li.innerText=item.name+" - ₹"+item.price
-cartList.appendChild(li)
+
+li.innerText=item.name+" ₹"+item.price
+
+list.appendChild(li)
 
 })
 
@@ -249,45 +327,16 @@ document.getElementById("total").innerText=total
 
 }
 
-function placeOrder(){
+function order(){
 
-let name=document.getElementById("name").value
-let phone=document.getElementById("phone").value
-let address=document.getElementById("address").value
+alert("Order placed successfully!")
 
-if(cart.length==0){
-alert("Cart is empty")
-return
-}
+cart=[]
+total=0
 
-if(name=="" || phone=="" || address==""){
-alert("Please fill customer details")
-return
-}
-
-let orderText="Hello Hot Wings Restaurant%0AOrder:%0A"
-
-cart.forEach(item=>{
-orderText+=item.name+" - ₹"+item.price+"%0A"
-})
-
-orderText+="Total: ₹"+total+"%0AName: "+name+"%0APhone: "+phone+"%0AAddress: "+address
-
-let link="https://wa.me/919957603281?text="+orderText
-
-document.getElementById("whatsappOrder").href=link
-
-alert("Click 'Order via WhatsApp' to send order")
+update()
 
 }
-
-document.getElementById("bookingForm").addEventListener("submit",function(e){
-
-e.preventDefault()
-
-alert("Table booked successfully!")
-
-})
 
 </script>
 
